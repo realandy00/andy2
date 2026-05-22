@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>L3swd Admin Login</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white flex items-center justify-center h-screen">
+
+  <!-- LOGIN CARD -->
+  <div class="bg-[#111] p-8 rounded-2xl shadow-2xl w-[90%] max-w-md">
+
+    <!-- LOGO -->
+    <h1 class="text-4xl font-bold text-red-600 text-center mb-2">
+      L3swd
+    </h1>
+
+    <p class="text-gray-400 text-center mb-8">
+      Admin Dashboard Login
+    </p>
+
+    <!-- ERROR -->
+    <div
+      id="error"
+      class="hidden bg-red-600/20 border border-red-600 text-red-400 p-3 rounded mb-4 text-sm"
+    >
+      Invalid admin credentials
+    </div>
+
+    <!-- FORM -->
+    <form id="loginForm" class="space-y-5">
+
+      <!-- EMAIL -->
+      <div>
+
+        <label class="block mb-2 text-sm text-gray-400">
+          Admin Email
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          required
+          placeholder="admin@l3swd.com"
+          class="w-full p-3 rounded bg-black border border-gray-700 focus:outline-none focus:border-red-600"
+        >
+
+      </div>
+
+      <!-- PASSWORD -->
+      <div>
+
+        <label class="block mb-2 text-sm text-gray-400">
+          Password
+        </label>
+
+        <input
+          type="password"
+          id="password"
+          required
+          placeholder="••••••••"
+          class="w-full p-3 rounded bg-black border border-gray-700 focus:outline-none focus:border-red-600"
+        >
+
+      </div>
+
+      <!-- LOGIN BUTTON -->
+      <button
+        type="submit"
+        class="w-full bg-red-600 py-3 rounded hover:bg-red-700 transition font-semibold"
+      >
+        Login
+      </button>
+
+    </form>
+
+  </div>
+
+  <script>
+
+    // ADMIN CREDENTIALS
+    const ADMIN_EMAIL = "admin@l3swd.com";
+
+    const ADMIN_PASSWORD = "123456";
+
+    const loginForm = document.getElementById("loginForm");
+
+    const errorBox = document.getElementById("error");
+
+    loginForm.addEventListener("submit", (e) => {
+
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+
+      const password = document.getElementById("password").value;
+
+      // CHECK LOGIN
+      if (
+        email === ADMIN_EMAIL &&
+        password === ADMIN_PASSWORD
+      ) {
+
+        // SAVE ADMIN SESSION
+        localStorage.setItem("adminLoggedIn", "true");
+
+        // REDIRECT
+        window.location.href = "admin.html";
+
+      } else {
+
+        errorBox.classList.remove("hidden");
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
